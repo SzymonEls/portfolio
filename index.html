@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Moje Portfolio | CV i Projekty</title>
+    <style>
+        /* Reset podstawowych styli */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        /* Zmienne dla spójnej kolorystyki */
+        :root {
+            --bg-color: #0f172a;
+            --card-bg: #1e293b;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --accent: #38bdf8;
+            --accent-hover: #7dd3fc;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            line-height: 1.6;
+            padding-bottom: 60px;
+        }
+
+        /* Nawigacja */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 2rem 10%;
+            border-bottom: 1px solid #334155;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--text-main);
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent);
+        }
+
+        .nav-links {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent);
+        }
+
+        /* Sekcja główna (Hero) */
+        .hero {
+            max-width: 800px;
+            margin: 4rem auto;
+            text-align: center;
+            padding: 0 1rem;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            font-weight: 800;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        /* Sekcja projektów */
+        .portfolio-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+
+        /* Sekcja CV */
+        .cv-section {
+            max-width: 1200px;
+            margin: 0 auto 3rem;
+            padding: 2rem 1rem;
+        }
+
+        .cv-grid {
+            display: grid;
+            grid-template-columns: minmax(0, 1.2fr) minmax(280px, 0.8fr);
+            gap: 2rem;
+            align-items: start;
+        }
+
+        .cv-panel {
+            background-color: var(--card-bg);
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 1.5rem;
+        }
+
+        .cv-panel + .cv-panel,
+        .cv-column .cv-panel + .cv-panel {
+            margin-top: 1.5rem;
+        }
+
+        .cv-panel h3 {
+            color: var(--accent);
+            font-size: 1.15rem;
+            margin-bottom: 1rem;
+        }
+
+        .cv-summary {
+            color: var(--text-muted);
+        }
+
+        .cv-item {
+            border-left: 2px solid #334155;
+            padding-left: 1rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .cv-item:last-child {
+            margin-bottom: 0;
+        }
+
+        .cv-item h4 {
+            font-size: 1.05rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .cv-meta {
+            display: block;
+            color: var(--accent);
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .cv-item p,
+        .cv-list {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+        }
+
+        .cv-list {
+            list-style-position: inside;
+        }
+
+        .cv-list li + li {
+            margin-top: 0.35rem;
+        }
+
+        .skills-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .contact-list {
+            list-style: none;
+            color: var(--text-muted);
+        }
+
+        .contact-list li + li {
+            margin-top: 0.5rem;
+        }
+
+        .contact-list a {
+            color: var(--accent);
+            text-decoration: none;
+        }
+
+        .contact-list a:hover {
+            color: var(--accent-hover);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Karta projektu */
+        .project-card {
+            background-color: var(--card-bg);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid #334155;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(56, 189, 248, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-muted);
+            font-weight: bold;
+            border-bottom: 1px solid #334155;
+        }
+
+        /* Możesz podmienić tag poniżej na prawdziwy obrazek: <img src="image.jpg" alt="Projekt"> */
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .project-info {
+            padding: 1.5rem;
+        }
+
+        .project-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .project-description {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+            height: 70px;
+            overflow: hidden;
+        }
+
+        .project-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 1.5rem;
+        }
+
+        .tag {
+            background-color: #0f172a;
+            color: var(--accent);
+            padding: 0.2rem 0.6rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+        }
+
+        .project-links {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .btn {
+            display: inline-block;
+            text-decoration: none;
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: background-color 0.2s, color 0.2s;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: #0f172a;
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+        }
+
+        .btn-secondary {
+            border: 1px solid #334155;
+            color: var(--text-main);
+        }
+
+        .btn-secondary:hover {
+            background-color: #334155;
+        }
+
+        /* Stopka / Kontakt */
+        footer {
+            text-align: center;
+            margin-top: 5rem;
+            padding: 2rem;
+            border-top: 1px solid #334155;
+            color: var(--text-muted);
+        }
+
+        /* Responsywność */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1.5rem;
+            }
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            .cv-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <a href="#" class="logo">Szymon<span>Elsner</span></a>
+        <ul class="nav-links">
+            <li><a href="#cv">CV</a></li>
+            <li><a href="#projekty">Projects</a></li>
+            <li><a href="#kontakt">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero section -->
+    <header class="hero">
+        <h1>Szymon <span>Elsner</span></h1>
+        <p>An aspiring IT student and tech enthusiast actively developing personal projects to expand my software development skills.</p>
+    </header>
+
+    <!-- CV Section -->
+    <section class="cv-section" id="cv">
+        <h2 class="section-title">CV</h2>
+
+        <div class="cv-grid">
+            <div class="cv-column">
+                <article class="cv-panel">
+                    <h3>About me</h3>
+                    <p class="cv-summary">Frontend developer skupiony na tworzeniu czytelnych, dostępnych i responsywnych interfejsów. Łączę dbałość o detale wizualne z praktycznym podejściem do kodu, wydajności i użyteczności.</p>
+                </article>
+
+                <article class="cv-panel">
+                    <h3>Doświadczenie</h3>
+                    <div class="cv-item">
+                        <h4>Frontend Developer</h4>
+                        <span class="cv-meta">Freelance / Projekty własne | 2024 - obecnie</span>
+                        <p>Projektowanie i wdrażanie stron portfolio, landing page'y oraz aplikacji webowych z wykorzystaniem HTML, CSS, JavaScript i React.</p>
+                    </div>
+                    <div class="cv-item">
+                        <h4>Junior Web Developer</h4>
+                        <span class="cv-meta">Praktyki / Projekty zespołowe | 2023 - 2024</span>
+                        <p>Praca nad komponentami UI, poprawą responsywności, integracją z API oraz utrzymaniem spójności wizualnej aplikacji.</p>
+                    </div>
+                </article>
+
+                <article class="cv-panel">
+                    <h3>Edukacja</h3>
+                    <div class="cv-item">
+                        <h4>Informatyka</h4>
+                        <span class="cv-meta">Uczelnia / Szkoła techniczna | 2021 - 2025</span>
+                        <p>Programowanie aplikacji internetowych, bazy danych, podstawy projektowania systemów oraz praca z narzędziami developerskimi.</p>
+                    </div>
+                </article>
+            </div>
+
+            <aside class="cv-column">
+                <article class="cv-panel">
+                    <h3>Dane kontaktowe</h3>
+                    <ul class="contact-list">
+                        <li>Email: <a href="mailto:jan@kowalski.pl">jan@kowalski.pl</a></li>
+                        <li>Telefon: +48 000 000 000</li>
+                        <li>Lokalizacja: Polska</li>
+                        <li>GitHub: <a href="#">github.com/jankowalski</a></li>
+                        <li>LinkedIn: <a href="#">linkedin.com/in/jankowalski</a></li>
+                    </ul>
+                </article>
+
+                <article class="cv-panel">
+                    <h3>Umiejętności</h3>
+                    <div class="skills-list">
+                        <span class="tag">HTML5</span>
+                        <span class="tag">CSS3</span>
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">React</span>
+                        <span class="tag">REST API</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">RWD</span>
+                        <span class="tag">UI Design</span>
+                    </div>
+                </article>
+
+                <article class="cv-panel">
+                    <h3>Języki</h3>
+                    <ul class="cv-list">
+                        <li>Polski - ojczysty</li>
+                        <li>Angielski - B2</li>
+                    </ul>
+                </article>
+
+                <article class="cv-panel">
+                    <h3>Certyfikaty</h3>
+                    <ul class="cv-list">
+                        <li>Responsive Web Design</li>
+                        <li>JavaScript Algorithms and Data Structures</li>
+                    </ul>
+                </article>
+            </aside>
+        </div>
+    </section>
+
+    <!-- Główna Sekcja z Projektami -->
+    <main class="portfolio-container" id="projekty">
+        <h2 class="section-title">Moje Projekty</h2>
+        
+        <div class="projects-grid">
+            
+            <!-- Karta Projektu 1 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <!-- Miejsce na grafikę projektu. Jeśli nie dodasz img, wyświetli się tło zastępcze -->
+                    <span>Podgląd Projektu 1</span>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">E-commerce App</h3>
+                    <p class="project-description">Sklep internetowy z pełnym systemem koszyka, filtrowaniem produktów oraz panelem administracyjnym.</p>
+                    <div class="project-tags">
+                        <span class="tag">HTML</span>
+                        <span class="tag">CSS</span>
+                        <span class="tag">JavaScript</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-primary">Live Demo</a>
+                        <a href="#" class="btn btn-secondary">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Karta Projektu 2 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <span>Podgląd Projektu 2</span>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Aplikacja Pogodowa</h3>
+                    <p class="project-description">Dynamiczna aplikacja pobierająca dane w czasie rzeczywistym z zewnętrznego API pogodowego dla dowolnego miasta.</p>
+                    <div class="project-tags">
+                        <span class="tag">JavaScript</span>
+                        <span class="tag">REST API</span>
+                        <span class="tag">CSS Grid</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-primary">Live Demo</a>
+                        <a href="#" class="btn btn-secondary">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Karta Projektu 3 -->
+            <article class="project-card">
+                <div class="project-image">
+                    <span>Podgląd Projektu 3</span>
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Panel Dashboard</h3>
+                    <p class="project-description">Zaawansowany panel użytkownika z wykresami statystyk, zarządzaniem użytkownikami i trybem ciemnym.</p>
+                    <div class="project-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Tailwind</span>
+                        <span class="tag">Charts.js</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn btn-primary">Live Demo</a>
+                        <a href="#" class="btn btn-secondary">GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+        </div>
+    </main>
+
+    <!-- Stopka / Kontakt -->
+    <footer id="kontakt">
+        <p>&copy; 2026 Jan Kowalski. Wszelkie prawa zastrzeżone.</p>
+        <p style="margin-top: 0.5rem;">Kontakt: <a href="mailto:jan@kowalski.pl" style="color: var(--accent); text-decoration: none;">jan@kowalski.pl</a></p>
+    </footer>
+
+</body>
+</html>
