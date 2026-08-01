@@ -107,6 +107,20 @@
             position: relative;
         }
 
+        /* Chowa element wizualnie, ale zostawia go czytnikom ekranu
+           i w strukturze nagłówków - inaczej sekcja traci nazwę. */
+        .visually-hidden {
+            position: absolute;
+            width: 1px;
+            height: 1px;
+            padding: 0;
+            margin: -1px;
+            overflow: hidden;
+            clip-path: inset(50%);
+            white-space: nowrap;
+            border: 0;
+        }
+
         /* Sekcja CV */
         .cv-section {
             max-width: 1200px;
@@ -144,7 +158,7 @@
         }
 
         .cv-item {
-            border-left: 2px solid #334155;
+            border-left: 2px solid var(--accent);
             padding-left: 1rem;
             margin-bottom: 1.5rem;
         }
@@ -153,17 +167,35 @@
             margin-bottom: 0;
         }
 
+        /* Nagłówek wpisu: nazwa po lewej, lata po prawej.
+           Przy wąskim panelu lata schodzą do własnej linii zamiast łamać nazwę. */
+        .cv-item-head {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: baseline;
+            justify-content: space-between;
+            gap: 0.25rem 1rem;
+        }
+
         .cv-item h4 {
             font-size: 1.05rem;
-            margin-bottom: 0.25rem;
+            line-height: 1.35;
+            flex: 1 1 14rem;
+        }
+
+        .cv-date {
+            color: var(--accent);
+            font-size: 0.85rem;
+            font-weight: 600;
+            white-space: nowrap;
+            font-variant-numeric: tabular-nums;
         }
 
         .cv-meta {
             display: block;
-            color: var(--accent);
+            color: var(--text-muted);
             font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 0.5rem;
+            margin-top: 0.35rem;
         }
 
         .cv-item p,
@@ -195,13 +227,23 @@
             margin-top: 0.5rem;
         }
 
-        .contact-list a {
+        /* Wspólny styl linków w panelach CV - bez tego linki w .cv-list
+           dostają domyślny kolor przeglądarki, nieczytelny na ciemnym tle. */
+        .contact-list a,
+        .cv-list a {
             color: var(--accent);
             text-decoration: none;
         }
 
-        .contact-list a:hover {
+        .contact-list a:hover,
+        .cv-list a:hover {
             color: var(--accent-hover);
+            text-decoration: underline;
+        }
+
+        .cv-issuer {
+            color: var(--text-muted);
+            font-size: 0.85rem;
         }
 
         .projects-grid {
@@ -211,8 +253,13 @@
         }
 
         /* Karta projektu */
+        /* Karta i jej wnętrze to kolumny flex, żeby tagi i przyciski trzymały
+           równą linię niezależnie od długości opisu - wcześniej robiła to
+           sztywna wysokość opisu, która ucinała dłuższy tekst. */
         .project-card {
             background-color: var(--card-bg);
+            display: flex;
+            flex-direction: column;
             border-radius: 8px;
             overflow: hidden;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
@@ -246,6 +293,9 @@
 
         .project-info {
             padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .project-title {
@@ -258,14 +308,13 @@
             color: var(--text-muted);
             font-size: 0.95rem;
             margin-bottom: 1.5rem;
-            height: 70px;
-            overflow: hidden;
         }
 
         .project-tags {
             display: flex;
             gap: 0.5rem;
             flex-wrap: wrap;
+            margin-top: auto;
             margin-bottom: 1.5rem;
         }
 
@@ -311,6 +360,15 @@
             background-color: #334155;
         }
 
+        /* Przycisk bez celu. Renderowany jako <span>, nie <a> - atrybut
+           disabled nie działa na linkach, a link bez href i tak nie jest
+           linkiem. Dzięki temu nie da się go kliknąć ani złapać tabem. */
+        .btn-disabled {
+            border: 1px dashed #334155;
+            color: var(--text-muted);
+            cursor: not-allowed;
+        }
+
         /* Stopka / Kontakt */
         footer {
             text-align: center;
@@ -351,83 +409,75 @@
     <!-- Hero section -->
     <header class="hero">
         <h1>Szymon <span>Elsner</span></h1>
-        <p>An aspiring IT student and tech enthusiast actively developing personal projects to expand my software development skills.</p>
+        <p>Incoming Artificial Intelligence student, starting my first semester this October. In the meantime I'm a tech enthusiast actively developing personal projects to expand my software development skills.</p>
     </header>
 
     <!-- CV Section -->
     <section class="cv-section" id="cv">
-        <h2 class="section-title">CV</h2>
+        <h2 class="visually-hidden">CV</h2>
 
         <div class="cv-grid">
             <div class="cv-column">
                 <article class="cv-panel">
-                    <h3>About me</h3>
-                    <p class="cv-summary">Frontend developer skupiony na tworzeniu czytelnych, dostępnych i responsywnych interfejsów. Łączę dbałość o detale wizualne z praktycznym podejściem do kodu, wydajności i użyteczności.</p>
+                    <h3>About me/experience</h3>
+                    <p class="cv-summary">
+                        Lately I've been building Python web apps end to end — from the data model to deployment on my own server. I lean on automation wherever I can: everything runs in Docker containers, so setup is clean and plug-and-play, and the repetitive work takes care of itself. AI gets me to a working version faster, so more of my time goes into the part that actually decides whether an app is good — the user experience.
+                        <br /><br />
+
+                        You can read more about my projects and the solutions behind them below :)
+                    </p>
                 </article>
 
                 <article class="cv-panel">
-                    <h3>Doświadczenie</h3>
+                    <h3>Education</h3>
                     <div class="cv-item">
-                        <h4>Frontend Developer</h4>
-                        <span class="cv-meta">Freelance / Projekty własne | 2024 - obecnie</span>
-                        <p>Projektowanie i wdrażanie stron portfolio, landing page'y oraz aplikacji webowych z wykorzystaniem HTML, CSS, JavaScript i React.</p>
-                    </div>
-                    <div class="cv-item">
-                        <h4>Junior Web Developer</h4>
-                        <span class="cv-meta">Praktyki / Projekty zespołowe | 2023 - 2024</span>
-                        <p>Praca nad komponentami UI, poprawą responsywności, integracją z API oraz utrzymaniem spójności wizualnej aplikacji.</p>
-                    </div>
-                </article>
-
-                <article class="cv-panel">
-                    <h3>Edukacja</h3>
-                    <div class="cv-item">
-                        <h4>Informatyka</h4>
-                        <span class="cv-meta">Uczelnia / Szkoła techniczna | 2021 - 2025</span>
-                        <p>Programowanie aplikacji internetowych, bazy danych, podstawy projektowania systemów oraz praca z narzędziami developerskimi.</p>
+                        <div class="cv-item-head">
+                            <h4>Akademickie Liceum Ogólnokształcące Politechniki Wrocławskiej (ALO PWr)</h4>
+                            <span class="cv-date">2022 – 2026</span>
+                        </div>
+                        <span class="cv-meta">secondary school · graduated (Matura exam)</span>
                     </div>
                 </article>
             </div>
 
             <aside class="cv-column">
                 <article class="cv-panel">
-                    <h3>Dane kontaktowe</h3>
+                    <h3>Contact</h3>
                     <ul class="contact-list">
-                        <li>Email: <a href="mailto:jan@kowalski.pl">jan@kowalski.pl</a></li>
-                        <li>Telefon: +48 000 000 000</li>
-                        <li>Lokalizacja: Polska</li>
-                        <li>GitHub: <a href="#">github.com/jankowalski</a></li>
-                        <li>LinkedIn: <a href="#">linkedin.com/in/jankowalski</a></li>
+                        <li>Email: (soon)</li>
+                        <li>Location: Wrocław, Polska</li>
+                        <li>GitHub: <a href="https://github.com/SzymonEls">github.com/SzymonEls</a></li>
+                        <li>LinkedIn: (soon)</li>
                     </ul>
                 </article>
 
                 <article class="cv-panel">
-                    <h3>Umiejętności</h3>
+                    <h3>Skills</h3>
                     <div class="skills-list">
-                        <span class="tag">HTML5</span>
-                        <span class="tag">CSS3</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">React</span>
-                        <span class="tag">REST API</span>
                         <span class="tag">Git</span>
-                        <span class="tag">RWD</span>
-                        <span class="tag">UI Design</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Bash</span>
+                        <span class="tag">Nginx and server management</span>
+                        <span class="tag">UX design</span>
+                        <span class="tag">SQL</span>
+                        <span class="tag">CI/CD</span>
                     </div>
                 </article>
 
                 <article class="cv-panel">
-                    <h3>Języki</h3>
+                    <h3>Languages</h3>
                     <ul class="cv-list">
-                        <li>Polski - ojczysty</li>
-                        <li>Angielski - B2</li>
+                        <li>Polish - native</li>
+                        <li>English - B2</li>
                     </ul>
                 </article>
 
                 <article class="cv-panel">
-                    <h3>Certyfikaty</h3>
+                    <h3>Certificates</h3>
                     <ul class="cv-list">
-                        <li>Responsive Web Design</li>
-                        <li>JavaScript Algorithms and Data Structures</li>
+                        <li><a href="https://www.freecodecamp.org/certification/szymon_elsner/relational-databases-v9" target="_blank" rel="noopener noreferrer">Relational Databases</a> <span class="cv-issuer">· freeCodeCamp</span></li>
                     </ul>
                 </article>
             </aside>
@@ -436,7 +486,7 @@
 
     <!-- Główna Sekcja z Projektami -->
     <main class="portfolio-container" id="projekty">
-        <h2 class="section-title">Moje Projekty</h2>
+        <h2 class="section-title">My top projects</h2>
         
         <div class="projects-grid">
             
@@ -444,19 +494,21 @@
             <article class="project-card">
                 <div class="project-image">
                     <!-- Miejsce na grafikę projektu. Jeśli nie dodasz img, wyświetli się tło zastępcze -->
-                    <span>Podgląd Projektu 1</span>
+                    <span>screen (soon)</span>
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">E-commerce App</h3>
-                    <p class="project-description">Sklep internetowy z pełnym systemem koszyka, filtrowaniem produktów oraz panelem administracyjnym.</p>
+                    <h3 class="project-title">Personal project manager</h3>
+                    <p class="project-description">A Flask web app, installable as a PWA. Each project is a living note where every section is a step, and the projects themselves are laid out on a timeline. There is also time tracking with detailed statistics. I use this project personally every day.</p>
                     <div class="project-tags">
-                        <span class="tag">HTML</span>
-                        <span class="tag">CSS</span>
-                        <span class="tag">JavaScript</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">HTML/CSS/JS</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">In production</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="btn btn-primary">Live Demo</a>
-                        <a href="#" class="btn btn-secondary">GitHub</a>
+                        <span class="btn btn-disabled">Live Demo (soon)</span>
+                        <a href="https://github.com/SzymonEls/AI-productivity-app" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </article>
@@ -464,19 +516,23 @@
             <!-- Karta Projektu 2 -->
             <article class="project-card">
                 <div class="project-image">
-                    <span>Podgląd Projektu 2</span>
+                    <span>screen (soon)</span>
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Aplikacja Pogodowa</h3>
-                    <p class="project-description">Dynamiczna aplikacja pobierająca dane w czasie rzeczywistym z zewnętrznego API pogodowego dla dowolnego miasta.</p>
+                    <h3 class="project-title">Minecraft Server Auth plugin</h3>
+                    <p class="project-description">Built as part of a team running our school's Minecraft server. The plugin authenticates players with a login and password, and for security, registration sends a verification code to the player's e-mail address and accepts only approved domains.</p>
                     <div class="project-tags">
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">REST API</span>
-                        <span class="tag">CSS Grid</span>
+                        <span class="tag">Java</span>
+                        <span class="tag">Spigot API</span>
+                        <span class="tag">Maven</span>
+                        <span class="tag">SMTP</span>
+                        <span class="tag">Git</span>
+                        <span class="tag">Team project</span>
+                        <span class="tag">In production</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="btn btn-primary">Live Demo</a>
-                        <a href="#" class="btn btn-secondary">GitHub</a>
+                        <span class="btn btn-disabled">View more (soon)</span>
+                        <a href="https://github.com/alo-mc/mc-authplugin" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </article>
@@ -484,19 +540,21 @@
             <!-- Karta Projektu 3 -->
             <article class="project-card">
                 <div class="project-image">
-                    <span>Podgląd Projektu 3</span>
+                    <span>screen (soon)</span>
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Panel Dashboard</h3>
-                    <p class="project-description">Zaawansowany panel użytkownika z wykresami statystyk, zarządzaniem użytkownikami i trybem ciemnym.</p>
+                    <h3 class="project-title">Auto deploy system</h3>
+                    <p class="project-description">A Python service that watches selected GitHub branches and redeploys my projects whenever a new commit lands. It runs each project's own deploy script and reads its exit code, so a failed build is marked as broken instead of being retried every few minutes. It has no HTTP API and no open port — only its own clock can start a deployment.</p>
                     <div class="project-tags">
-                        <span class="tag">React</span>
-                        <span class="tag">Tailwind</span>
-                        <span class="tag">Charts.js</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">CI/CD</span>
+                        <span class="tag">pytest</span>
+                        <span class="tag">In production</span>
                     </div>
                     <div class="project-links">
-                        <a href="#" class="btn btn-primary">Live Demo</a>
-                        <a href="#" class="btn btn-secondary">GitHub</a>
+                        <span class="btn btn-disabled">View more (soon)</span>
+                        <a href="https://github.com/SzymonEls/container-updater" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </article>
@@ -506,8 +564,8 @@
 
     <!-- Stopka / Kontakt -->
     <footer id="kontakt">
-        <p>&copy; 2026 Jan Kowalski. Wszelkie prawa zastrzeżone.</p>
-        <p style="margin-top: 0.5rem;">Kontakt: <a href="mailto:jan@kowalski.pl" style="color: var(--accent); text-decoration: none;">jan@kowalski.pl</a></p>
+        <p>&copy; 2026 Szymon Elsner. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Contact: (soon)</p>
     </footer>
 
 </body>
