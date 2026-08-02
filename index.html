@@ -425,6 +425,369 @@
                 grid-template-columns: 1fr;
             }
         }
+
+        /* Wydruk */
+        @media print {
+            /* Ciemne tło zjadłoby cały toner, więc na papierze odwracamy
+               paletę. Wystarczy podmienić zmienne - reszta stylów idzie za nimi. */
+            :root {
+                --bg-color: #ffffff;
+                --card-bg: #ffffff;
+                --text-main: #000000;
+                --text-muted: #444444;
+                --accent: #0b5f8a;
+                --accent-hover: #0b5f8a;
+            }
+
+            @page {
+                margin: 15mm;
+            }
+
+            /* Wszystko ma się zmieścić na jednej kartce A4, stąd ciasna
+               typografia i poskracane odstępy w całym tym bloku.
+
+               Skala druku - każdy rozmiar tekstu na stronie należy do jednego
+               z tych pięciu stopni, żeby CV i projekty czytały się jak jeden
+               dokument:
+                 18pt   imię i nazwisko
+                 12pt   tytuł sekcji ("My top projects")
+                 10pt   nagłówki paneli i tytuły wpisów/kart
+                 8pt    tekst ciągły
+                 7.5pt  podpisy, daty, tagi, przyciski
+               Uwaga: style ekranowe podają rozmiary w rem, czyli względem
+               root font-size (16px = 12pt), a NIE względem body. Dlatego każdy
+               taki selektor musi tu dostać jawny rozmiar - inaczej np. nazwa
+               szkoły wychodzi większa niż nagłówek sekcji. */
+            body {
+                background: #ffffff;
+                color: #000000;
+                font-size: 8pt;
+                line-height: 1.28;
+                padding-bottom: 0;
+            }
+
+            /* Nawigacja jest bezużyteczna na papierze - nie da się kliknąć. */
+            nav {
+                display: none;
+            }
+
+            /* Awatar obok nazwiska zamiast nad nim - pionowy układ zjadał
+               ok. 4 cm wysokości, których zabrakłoby na dole strony.
+
+               Kreska pod hero zamyka siatkę od góry. Zerowy margin-bottom jest
+               tu istotny: odstęp robi dopiero padding kolumn CV, dzięki czemu
+               pionowa oś zaczyna się dokładnie na tej linii, a nie kilka
+               milimetrów pod nią. */
+            .hero {
+                display: flex;
+                align-items: center;
+                gap: 5mm;
+                text-align: left;
+                margin: 0;
+                padding: 0 0 2.5mm;
+                max-width: none;
+                border-bottom: 0.5pt solid #d5d5d5;
+            }
+
+            /* Bez tego imię łamie się na dwie linie i rozpycha nagłówek. */
+            .hero h1 {
+                font-size: 18pt;
+                margin-bottom: 0;
+                white-space: nowrap;
+            }
+
+            .hero p {
+                flex: 1;
+                font-size: 8pt;
+                margin-bottom: 0;
+            }
+
+            /* Bez tła - inaczej przy włączonym drukowaniu grafik tła wychodzi
+               granatowe koło z ledwo widocznymi inicjałami. */
+            .hero-avatar {
+                flex: 0 0 auto;
+                width: 18mm;
+                height: 18mm;
+                margin: 0;
+                background: none;
+                border: 1px solid #999999;
+                color: #444444;
+                font-size: 11pt;
+            }
+
+            .cv-section,
+            .portfolio-container {
+                margin: 0 auto;
+                padding: 0;
+                max-width: none;
+            }
+
+            /* Zero marginesu z tego samego powodu co przy hero - odstęp nad
+               kreską daje padding-bottom kolumn, więc oś dobija do niej. */
+            .cv-section {
+                margin-bottom: 0;
+            }
+
+            /* Linie oddzielają całe bloki, a nie podkreślają nagłówki:
+               hero | CV | projekty, a wewnątrz CV kolejne panele. Kreska
+               na pełną szerokość bloku czyta się jako granica sekcji,
+               podkreślenie tytułu - tylko jako ozdobnik nagłówka.
+               Jedna waga linii dla wszystkiego - grubsze kreski sekcyjne
+               rozbijały siatkę na dwa niepasujące do siebie style. */
+            .portfolio-container {
+                padding-top: 3mm;
+                border-top: 0.5pt solid #d5d5d5;
+            }
+
+            .cv-panel + .cv-panel,
+            .cv-column .cv-panel + .cv-panel {
+                margin-top: 2.5mm;
+                padding-top: 2.5mm;
+                border-top: 0.5pt solid #d5d5d5;
+            }
+
+            .section-title {
+                font-size: 12pt;
+                margin: 0 0 2.5mm;
+                /* Nagłówek nie powinien zostać sam na dole strony. */
+                break-after: avoid;
+                page-break-after: avoid;
+            }
+
+            /* Szerokość A4 po marginesach to ok. 680px CSS, czyli mniej niż
+               próg 768px - bez tego media query dla telefonów zwinęłoby CV
+               do jednej kolumny i rozlało je na kilka kartek.
+
+               Zamiast gapa kolumny dostają własny padding, a pionowa oś to
+               border-left prawej kolumny. Dzięki temu kreska wypada dokładnie
+               w rynnie i wiadomo, gdzie kończy się jedna kolumna. Stretch, bo
+               inaczej oś miałaby wysokość swojej kolumny, a nie całego CV. */
+            .cv-grid {
+                grid-template-columns: minmax(0, 1.4fr) minmax(0, 1fr);
+                gap: 0;
+                align-items: stretch;
+            }
+
+            /* Pionowy padding obu kolumn robi odstęp od kreski nad i pod CV.
+               Musi być na kolumnach, a nie na marginesach sekcji - inaczej oś
+               kończyłaby się przed poziomymi liniami zamiast je dotykać. */
+            .cv-column {
+                padding-top: 3mm;
+                padding-bottom: 3mm;
+            }
+
+            .cv-column:first-child {
+                padding-right: 4mm;
+            }
+
+            .cv-column + .cv-column {
+                padding-left: 4mm;
+                border-left: 0.5pt solid #d5d5d5;
+            }
+
+            /* Poziome kreski wchodzą ujemnym marginesem w padding kolumny,
+               żeby dobiły do pionowej osi zamiast urywać się przed nią.
+               Padding o tej samej wartości oddaje tekstowi jego miejsce, więc
+               przesuwa się sama kreska, nie treść. */
+            .cv-column:first-child .cv-panel + .cv-panel {
+                margin-right: -4mm;
+                padding-right: 4mm;
+            }
+
+            .cv-column + .cv-column .cv-panel + .cv-panel {
+                margin-left: -4mm;
+                padding-left: 4mm;
+            }
+
+            .cv-panel,
+            .cv-item,
+            .project-card {
+                break-inside: avoid;
+                page-break-inside: avoid;
+            }
+
+            /* border-radius musi zejść razem z ramką - inaczej kreska
+               oddzielająca panele zakręca łukiem na końcach zamiast dobić
+               do pionowej osi. */
+            .cv-panel {
+                padding: 0;
+                border: 0;
+                border-radius: 0;
+            }
+
+            .cv-panel h3 {
+                font-size: 10pt;
+                margin-bottom: 2mm;
+            }
+
+            /* Tytuł wpisu w CV - ten sam stopień co tytuł karty projektu. */
+            .cv-item h4 {
+                font-size: 10pt;
+                line-height: 1.25;
+            }
+
+            .cv-item p,
+            .cv-list {
+                font-size: 8pt;
+            }
+
+            .cv-date,
+            .cv-meta,
+            .cv-issuer {
+                font-size: 7.5pt;
+            }
+
+            .cv-item {
+                padding-left: 2.5mm;
+                margin-bottom: 2.5mm;
+            }
+
+            .cv-meta {
+                margin-top: 0.8mm;
+            }
+
+            .skills-list {
+                gap: 1.5mm;
+            }
+
+            .cv-item p,
+            .cv-list,
+            .contact-list {
+                margin-top: 1mm;
+            }
+
+            .contact-list li + li,
+            .cv-list li + li {
+                margin-top: 0.5mm;
+            }
+
+            .projects-grid {
+                grid-template-columns: 1fr;
+                gap: 2mm;
+            }
+
+            /* Zrzut obok opisu, nie nad nim - trzy karty jedna pod drugą
+               w pionowym układzie nie mieszczą się na jednej stronie. */
+            .project-card {
+                flex-direction: row;
+                border: 1px solid #cccccc;
+                box-shadow: none;
+                transform: none;
+            }
+
+            .project-image {
+                flex: 0 0 42mm;
+                height: auto;
+                position: relative;
+                background: #ffffff;
+                border-bottom: 0;
+                border-right: 1px solid #cccccc;
+            }
+
+            /* Kafelek nie ma własnej wysokości - rozciąga go dopiero flexbox,
+               więc zdjęcie pozycjonujemy absolutnie względem niego. */
+            .project-image img {
+                position: absolute;
+                inset: 0;
+            }
+
+            /* Kafelki bez zrzutu (sam napis "screen (soon)") marnują miejsce,
+               więc na wydruku znikają. Karty ze zdjęciem mają <img>,
+               te bez - <span>. */
+            .project-image:has(> span) {
+                display: none;
+            }
+
+            .project-info {
+                padding: 2mm 2.5mm;
+            }
+
+            .project-title {
+                font-size: 10pt;
+                margin-bottom: 1mm;
+            }
+
+            .project-description {
+                font-size: 8pt;
+                margin-bottom: 1.5mm;
+            }
+
+            .project-tags {
+                gap: 1.5mm;
+                margin-bottom: 1.5mm;
+            }
+
+            /* Tła i tak nie wydrukują się domyślnie, więc tagi i przyciski
+               dostają obrys zamiast wypełnienia. */
+            .tag,
+            .btn,
+            .btn-primary,
+            .btn-secondary,
+            .btn-disabled {
+                background: none;
+                border: 1px solid #999999;
+                color: #000000;
+                padding: 0.5mm 1.5mm;
+                font-size: 7.5pt;
+            }
+
+            .contact-list a,
+            .cv-list a {
+                color: #000000;
+                text-decoration: underline;
+            }
+
+            /* Bez adresów obok linków wydruk gubi połowę treści. CSS nie umie
+               obciąć "https://" z attr(href), więc krótka wersja adresu siedzi
+               w atrybucie data-print przy samym linku. Linki bez tego atrybutu
+               (np. w Kontakcie) mają adres już w treści - nie dublujemy go.
+
+               data-print musi być pełną, działającą ścieżką - to jedyna forma
+               adresu, jaką dostaje czytający wydruk. Skracamy wyłącznie schemat
+               i "www.", nigdy końcówkę ścieżki.
+
+               overflow-wrap zamiast word-break: break-all - łamie adres dopiero
+               wtedy, gdy naprawdę nie mieści się w linii, zamiast rozcinać
+               w środku każdy dłuższy odnośnik. */
+            a[data-print]::after {
+                content: " (" attr(data-print) ")";
+                font-size: 7pt;
+                font-weight: normal;
+                color: #555555;
+                overflow-wrap: anywhere;
+            }
+
+            /* Przy wpisach listy data-print siedzi na <li>, nie na <a>. Adres
+               ląduje wtedy pod całą linią, a nie w środku niej - inaczej
+               rozdzielałby nazwę certyfikatu od wydawcy ("· freeCodeCamp")
+               i wpis rozpadał się na cztery linijki. */
+            .cv-list li[data-print]::after {
+                content: "(" attr(data-print) ")";
+                display: block;
+                font-size: 7pt;
+                color: #555555;
+                overflow-wrap: anywhere;
+            }
+
+            /* Adresy rozpychają przyciski, więc zamiast rozstrzeliwania
+               na boki układamy je od lewej i pozwalamy zawijać. */
+            .project-links {
+                justify-content: flex-start;
+                gap: 2mm;
+                flex-wrap: wrap;
+            }
+
+            footer {
+                margin-top: 2mm;
+                padding: 1.5mm 0 0;
+                border-top: 1px solid #cccccc;
+                font-size: 7.5pt;
+            }
+
+            footer p + p {
+                margin-top: 0 !important;
+            }
+        }
     </style>
 </head>
 <body>
@@ -514,7 +877,8 @@
                 <article class="cv-panel">
                     <h3>Certificates</h3>
                     <ul class="cv-list">
-                        <li><a href="https://www.freecodecamp.org/certification/szymon_elsner/relational-databases-v9" target="_blank" rel="noopener noreferrer">Relational Databases</a> <span class="cv-issuer">· freeCodeCamp</span></li>
+                        <!-- data-print: skrócony adres dopisywany przy druku (patrz @media print) -->
+                        <li data-print="freecodecamp.org/certification/szymon_elsner/relational-databases-v9"><a href="https://www.freecodecamp.org/certification/szymon_elsner/relational-databases-v9" target="_blank" rel="noopener noreferrer">Relational Databases</a> <span class="cv-issuer">· freeCodeCamp</span></li>
                     </ul>
                 </article>
             </aside>
@@ -544,8 +908,8 @@
                         <span class="tag">In production</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://demo1.sze.one" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
-                        <a href="https://github.com/SzymonEls/AI-productivity-app" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://demo1.sze.one" data-print="demo1.sze.one" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                        <a href="https://github.com/SzymonEls/AI-productivity-app" data-print="github.com/SzymonEls/AI-productivity-app" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </article>
@@ -569,7 +933,7 @@
                     </div>
                     <div class="project-links">
                         <span class="btn btn-disabled">View more (soon)</span>
-                        <a href="https://github.com/alo-mc/mc-authplugin" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://github.com/alo-mc/mc-authplugin" data-print="github.com/alo-mc/mc-authplugin" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </article>
@@ -591,7 +955,7 @@
                     </div>
                     <div class="project-links">
                         <span class="btn btn-disabled">View more (soon)</span>
-                        <a href="https://github.com/SzymonEls/container-updater" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
+                        <a href="https://github.com/SzymonEls/container-updater" data-print="github.com/SzymonEls/container-updater" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
             </article>
