@@ -77,6 +77,31 @@
             padding: 0 1rem;
         }
 
+        /* Zdjęcie profilowe. Dopóki nie ma pliku, widać inicjały na tle
+           gradientu - żeby podmienić, wstaw <img> w środek .hero-avatar. */
+        .hero-avatar {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 1.5rem;
+            border-radius: 50%;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+            border: 3px solid var(--accent);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            font-weight: 800;
+            color: var(--text-muted);
+            letter-spacing: 0.05em;
+        }
+
+        .hero-avatar img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
         .hero h1 {
             font-size: 3rem;
             margin-bottom: 1rem;
@@ -388,6 +413,11 @@
                 gap: 1rem;
                 padding: 1.5rem;
             }
+            .hero-avatar {
+                width: 110px;
+                height: 110px;
+                font-size: 1.8rem;
+            }
             .hero h1 {
                 font-size: 2.2rem;
             }
@@ -411,6 +441,10 @@
 
     <!-- Hero section -->
     <header class="hero">
+        <div class="hero-avatar">
+            <!-- Podmień na: <img src="profile.jpg" alt="Szymon Elsner" width="300" height="300"> -->
+            <span>SE</span>
+        </div>
         <h1>Szymon <span>Elsner</span></h1>
         <p>Incoming Artificial Intelligence student, starting my first semester this October. In the meantime I'm a tech enthusiast actively developing personal projects to expand my software development skills.</p>
     </header>
