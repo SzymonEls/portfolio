@@ -289,6 +289,9 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+            /* Kadr trzyma się lewego górnego rogu - przy przycinaniu ucina
+               dół i prawą stronę, zamiast obcinać zrzut symetrycznie. */
+            object-position: left top;
         }
 
         .project-info {
@@ -494,7 +497,7 @@
             <article class="project-card">
                 <div class="project-image">
                     <!-- Miejsce na grafikę projektu. Jeśli nie dodasz img, wyświetli się tło zastępcze -->
-                    <span>screen (soon)</span>
+                    <img src="productivity.png" alt="Personal project manager - screenshot" width="900" height="715" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Personal project manager</h3>
@@ -507,7 +510,7 @@
                         <span class="tag">In production</span>
                     </div>
                     <div class="project-links">
-                        <span class="btn btn-disabled">Live Demo (soon)</span>
+                        <a href="https://demo1.sze.one" class="btn btn-primary" target="_blank" rel="noopener noreferrer">Live Demo</a>
                         <a href="https://github.com/SzymonEls/AI-productivity-app" class="btn btn-secondary" target="_blank" rel="noopener noreferrer">GitHub</a>
                     </div>
                 </div>
@@ -540,7 +543,7 @@
             <!-- Karta Projektu 3 -->
             <article class="project-card">
                 <div class="project-image">
-                    <span>screen (soon)</span>
+                    <img src="container-updater.png" alt="Auto deploy system - logi container-updatera" width="800" height="382" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Auto deploy system</h3>
