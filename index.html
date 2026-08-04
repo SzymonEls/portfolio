@@ -69,6 +69,41 @@
             color: var(--accent);
         }
 
+        /* Linki i przycisk druku trzymane w jednej grupie po prawej. Bez tego
+           opakowania "space-between" w nav rozrzuciłoby trzy elementy równo po
+           całej szerokości i menu odjechałoby na środek. */
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        /* Kwadratowy przycisk z samą ikoną. Rozmiar ikony idzie z font-size
+           (.icon ma wymiary w em), więc jeden parametr steruje całością. */
+        .print-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: none;
+            border: 1px solid #334155;
+            border-radius: 6px;
+            padding: 0.6rem;
+            font-size: 1.5rem;
+            color: var(--text-muted);
+            cursor: pointer;
+            transition: background-color 0.2s, color 0.2s, border-color 0.2s;
+        }
+
+        .print-btn:hover {
+            background-color: #334155;
+            color: var(--text-main);
+        }
+
+        .print-btn:focus-visible {
+            outline: 2px solid var(--accent);
+            outline-offset: 2px;
+        }
+
         /* Sekcja główna (Hero) */
         .hero {
             max-width: 800px;
@@ -451,6 +486,12 @@
                 flex-direction: column;
                 gap: 1rem;
                 padding: 1.5rem;
+            }
+            /* Na wąskim ekranie linki i przycisk nie mieszczą się w jednym
+               wierszu - schodzą pod siebie, przycisk zostaje wyśrodkowany. */
+            .nav-right {
+                flex-direction: column;
+                gap: 1rem;
             }
             .hero-avatar {
                 width: 84px;
@@ -914,17 +955,27 @@
         <symbol id="i-skills" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.106-3.105c.32-.322.863-.22.983.218a6 6 0 0 1-8.259 7.057l-7.91 7.91a1 1 0 0 1-2.999-3l7.91-7.91a6 6 0 0 1 7.057-8.259c.438.12.54.662.219.984z" /></symbol>
         <symbol id="i-user" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="5" /> <path d="M20 21a8 8 0 0 0-16 0" /></symbol>
         <symbol id="i-at" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /> <path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-4 8" /></symbol>
+        <symbol id="i-print" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 9V2h12v7" /> <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" /> <rect x="6" y="14" width="12" height="8" rx="1" /></symbol>
         <symbol id="i-github" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></symbol>
     </svg>
 
     <!-- Navbar -->
     <nav>
         <a href="#" class="logo">Szymon<span>Elsner</span></a>
-        <ul class="nav-links">
-            <li><a href="#cv">CV</a></li>
-            <li><a href="#projekty">Projects</a></li>
-            <li><a href="#kontakt">Contact</a></li>
-        </ul>
+        <div class="nav-right">
+            <ul class="nav-links">
+                <li><a href="#cv">CV</a></li>
+                <li><a href="#projekty">Projects</a></li>
+                <li><a href="#kontakt">Contact</a></li>
+            </ul>
+            <!-- Strona ma dopracowany arkusz @media print, więc wydruk jest tu
+                 pełnoprawną funkcją, a nie przypadkiem - stąd jawny przycisk. -->
+            <!-- Sama ikona, więc nazwa przycisku musi przyjść z aria-label -
+                 bez tego czytnik ekranu przeczyta pusty "button". -->
+            <button type="button" class="print-btn" onclick="window.print()" aria-label="Print" title="Print">
+                <svg class="icon" aria-hidden="true"><use href="#i-print"></use></svg>
+            </button>
+        </div>
     </nav>
 
     <!-- Hero section -->
