@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="pl">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Moje Portfolio | CV i Projekty</title>
+    <title>Szymon Elsner | CV and Projects</title>
     <style>
         /* Reset podstawowych styli */
         * {
@@ -643,9 +643,15 @@
                 padding-right: 4mm;
             }
 
+            /* Prawa kolumna jest krótsza od lewej, a przez "stretch" i tak
+               dostaje pełną wysokość wiersza - rozkładamy więc jej panele na
+               całą tę wysokość, zamiast zostawiać pustkę pod ostatnim. */
             .cv-column + .cv-column {
                 padding-left: 4mm;
                 border-left: 1px solid #d5d5d5;
+                display: flex;
+                flex-direction: column;
+                justify-content: space-between;
             }
 
             /* Poziome kreski wchodzą ujemnym marginesem w padding kolumny,
@@ -982,9 +988,12 @@
                     <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-at"></use></svg>Contact</h3>
                     <ul class="contact-list">
                         <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-mail"></use></svg>Email: <a href="mailto:szymon@szymonelsner.pl">szymon@szymonelsner.pl</a></li>
-                        <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-pin"></use></svg>Location: Wrocław, Polska</li>
-                        <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>GitHub: <a href="https://github.com/SzymonEls">github.com/SzymonEls</a></li>
-                        <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-work"></use></svg>LinkedIn: (soon)</li>
+                        <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-pin"></use></svg>Location: Wrocław, Poland</li>
+                        <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>GitHub: <a href="https://github.com/SzymonEls" target="_blank" rel="noopener noreferrer">github.com/SzymonEls</a></li>
+                        <!-- Ukryte do czasu założenia profilu. Zakomentowane, a nie usunięte,
+                             żeby wrócić jednym ruchem - ikona "i-work" czeka w sprite.
+                             <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-work"></use></svg>LinkedIn: <a href="">...</a></li>
+                        -->
                     </ul>
                 </article>
 
@@ -1008,6 +1017,7 @@
                     <ul class="cv-list">
                         <li>Polish - native</li>
                         <li>English - B2</li>
+                        <li>German - A1</li>
                     </ul>
                 </article>
             </aside>
@@ -1050,7 +1060,7 @@
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Minecraft Server Auth plugin (2024)</h3>
-                    <p class="project-description">Built as part of a team running our school's Minecraft server with several dozen players. The plugin authenticates players with a login and password, and for security, registration sends a verification code to the player's e-mail address and accepts only approved domains. We had to solve problems like: security vulnerabilities, optimisation (many players logging in at the same time) and </p>
+                    <p class="project-description">Built with a team for our school's Minecraft server, which had several dozen players. The plugin authenticated players with a login and password; registration sent a verification code by e-mail and accepted only approved domains, so only people from the school could get in. The hard parts were security - a flaw in the login flow means anyone can take over an account - and handling many players logging in at once.</p>
                     <div class="project-tags">
                         <span class="tag">Java</span>
                         <span class="tag">Spigot API</span>
@@ -1073,7 +1083,7 @@
                 </div>
                 <div class="project-info">
                     <h3 class="project-title">Auto deploy system (2026)</h3>
-                    <p class="project-description">A Python service that watches selected GitHub branches and redeploys my projects whenever a new commit lands. It runs each project's own deploy script and reads its exit code, so a failed build is marked as broken instead of being retried every few minutes. It has no HTTP API and no open port - only its own clock can start a deployment. I run it on my own server and it saves me a lot of time.</p>
+                    <p class="project-description">A Python service that watches selected GitHub branches and redeploys my projects whenever a new commit lands. It runs each project's own deploy script and reads its exit code, so a failed build is marked as broken instead of being retried every few minutes. It has no HTTP API and no open port - only its own clock can start a deployment. It currently keeps a few projects up to date on my server.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Docker</span>
