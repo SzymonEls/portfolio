@@ -1,0 +1,25 @@
+# Adres repozytorium i galaz - jedyne miejsce, gdzie sa podane.
+# Docker klonuje je sam podczas budowania, wiec katalog na serwerze nie musi
+# byc repozytorium git ani zawierac plikow strony. Wystarczy ten plik.
+#
+# Podmiana bez edycji pliku:
+#   PORTFOLIO_BRANCH=dev docker compose build
+#
+# Klucz "version" celowo usuniety - Compose v2 go ignoruje i ostrzega o nim.
+
+services:
+  portfolio:
+    build:
+      context: ${PORTFOLIO_REPO:-https://github.com/SzymonEls/portfolio.git}#${PORTFOLIO_BRANCH:-main}
+    image: portfolio:latest
+    container_name: portfolio-app
+    ports:
+      - "8080:80"
+    restart: unless-stopped
+    networks:
+      - reverse_proxy
+
+networks:
+  reverse_proxy:
+    driver: bridge
+    external: true
