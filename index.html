@@ -72,7 +72,7 @@
         /* Sekcja główna (Hero) */
         .hero {
             max-width: 800px;
-            margin: 4rem auto;
+            margin: 4rem auto 3rem;
             text-align: center;
             padding: 0 1rem;
         }
@@ -80,17 +80,17 @@
         /* Zdjęcie profilowe. Dopóki nie ma pliku, widać inicjały na tle
            gradientu - żeby podmienić, wstaw <img> w środek .hero-avatar. */
         .hero-avatar {
-            width: 150px;
-            height: 150px;
-            margin: 0 auto 1.5rem;
+            width: 104px;
+            height: 104px;
+            margin: 0 auto 1.25rem;
             border-radius: 50%;
             overflow: hidden;
             background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
-            border: 3px solid var(--accent);
+            border: 2px solid var(--accent);
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.5rem;
+            font-size: 1.75rem;
             font-weight: 800;
             color: var(--text-muted);
             letter-spacing: 0.05em;
@@ -103,8 +103,8 @@
         }
 
         .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 1rem;
+            font-size: 2.25rem;
+            margin-bottom: 0.75rem;
             font-weight: 800;
         }
 
@@ -113,9 +113,9 @@
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.05rem;
             color: var(--text-muted);
-            margin-bottom: 2rem;
+            margin-bottom: 0;
         }
 
         /* Sekcja projektów */
@@ -453,12 +453,12 @@
                 padding: 1.5rem;
             }
             .hero-avatar {
-                width: 110px;
-                height: 110px;
-                font-size: 1.8rem;
+                width: 84px;
+                height: 84px;
+                font-size: 1.4rem;
             }
             .hero h1 {
-                font-size: 2.2rem;
+                font-size: 1.85rem;
             }
             .cv-grid {
                 grid-template-columns: 1fr;
@@ -547,7 +547,7 @@
                 gap: 5mm;
                 text-align: left;
                 margin: 0;
-                padding: 0 0 7mm;
+                padding: 0 0 5mm;
                 max-width: none;
                 border-bottom: 1px solid #d5d5d5;
             }
@@ -598,14 +598,14 @@
                Jedna waga linii dla wszystkiego - grubsze kreski sekcyjne
                rozbijały siatkę na dwa niepasujące do siebie style. */
             .portfolio-container {
-                padding-top: 7mm;
+                padding-top: 5mm;
                 border-top: 1px solid #d5d5d5;
             }
 
             .cv-panel + .cv-panel,
             .cv-column .cv-panel + .cv-panel {
-                margin-top: 2.5mm;
-                padding-top: 2.5mm;
+                margin-top: 2mm;
+                padding-top: 2mm;
                 border-top: 1px solid #d5d5d5;
             }
 
@@ -635,8 +635,8 @@
                Musi być na kolumnach, a nie na marginesach sekcji - inaczej oś
                kończyłaby się przed poziomymi liniami zamiast je dotykać. */
             .cv-column {
-                padding-top: 7mm;
-                padding-bottom: 7mm;
+                padding-top: 5mm;
+                padding-bottom: 5mm;
             }
 
             .cv-column:first-child {
@@ -702,7 +702,7 @@
 
             .cv-item {
                 padding-left: 2.5mm;
-                margin-bottom: 2.5mm;
+                margin-bottom: 2mm;
             }
 
             .cv-meta {
@@ -928,7 +928,7 @@
             <span>SE</span>
         </div>
         <h1>Szymon <span>Elsner</span></h1>
-        <p>Incoming Artificial Intelligence student, starting my first semester this October. In the meantime I'm a tech enthusiast actively developing personal projects to expand my software development skills.</p>
+        <p>Incoming Artificial Intelligence student (from October 2026). In the meantime I'm a tech enthusiast actively developing and running my own tools like a project manager I use every day, or an automatic deploy system that saves me time updating my Docker containers.</p>
     </header>
 
     <!-- CV Section -->
@@ -940,10 +940,13 @@
                 <article class="cv-panel">
                     <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-user"></use></svg>About me/experience</h3>
                     <p class="cv-summary">
-                        Lately I've been building Python web apps end to end — from the data model to deployment on my own server. I lean on automation wherever I can: everything runs in Docker containers, so setup is clean and plug-and-play, and the repetitive work takes care of itself. AI gets me to a working version faster, so more of my time goes into the part that actually decides whether an app is good — the user experience.
+                        I build Python web apps end to end - from the data model to the server they run on. Everything ships in Docker, and a service I wrote redeploys my projects on every commit.
                         <br /><br />
 
-                        You can read more about my projects and the solutions behind them below :)
+                        I build tools I actually need: the project manager below exists because nothing matched the way I plan my work. I have also worked in a team, on the auth plugin for my school's Minecraft server. These three are my biggest finished projects; the rest are on my GitHub.
+                        <!-- TODO: dopisać tu jedno zdanie o tym, czego szukam (staż / praktyki /
+                             praca na część etatu) i w jakim kierunku (backend / DevOps). Bez tego
+                             czytelnik nie wie, co ci zaproponować. -->
                     </p>
                 </article>
 
@@ -951,11 +954,26 @@
                     <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-edu"></use></svg>Education</h3>
                     <div class="cv-item">
                         <div class="cv-item-head">
+                            <h4>Politechnika Wrocławska (Wrocław University of Science and Technology)</h4>
+                            <span class="cv-date">from Oct 2026</span>
+                        </div>
+                        <span class="cv-meta">Artificial Intelligence</span>
+                    </div>
+                    <div class="cv-item">
+                        <div class="cv-item-head">
                             <h4>Akademickie Liceum Ogólnokształcące Politechniki Wrocławskiej (ALO PWr)</h4>
-                            <span class="cv-date">2022 – 2026</span>
+                            <span class="cv-date">2022 - 2026</span>
                         </div>
                         <span class="cv-meta">secondary school · graduated (Matura exam)</span>
                     </div>
+                </article>
+
+                <article class="cv-panel">
+                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-award"></use></svg>Certificates</h3>
+                    <ul class="cv-list">
+                        <!-- data-print: skrócony adres dopisywany przy druku (patrz @media print) -->
+                        <li data-print="freecodecamp.org/certification/szymon_elsner/relational-databases-v9"><a href="https://www.freecodecamp.org/certification/szymon_elsner/relational-databases-v9" target="_blank" rel="noopener noreferrer">Relational Databases</a> <span class="cv-issuer">· freeCodeCamp</span></li>
+                    </ul>
                 </article>
             </div>
 
@@ -986,14 +1004,6 @@
                 </article>
 
                 <article class="cv-panel">
-                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-award"></use></svg>Certificates</h3>
-                    <ul class="cv-list">
-                        <!-- data-print: skrócony adres dopisywany przy druku (patrz @media print) -->
-                        <li data-print="freecodecamp.org/certification/szymon_elsner/relational-databases-v9"><a href="https://www.freecodecamp.org/certification/szymon_elsner/relational-databases-v9" target="_blank" rel="noopener noreferrer">Relational Databases</a> <span class="cv-issuer">· freeCodeCamp</span></li>
-                    </ul>
-                </article>
-
-                <article class="cv-panel">
                     <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-lang"></use></svg>Languages</h3>
                     <ul class="cv-list">
                         <li>Polish - native</li>
@@ -1017,8 +1027,8 @@
                     <img src="productivity.png" alt="Personal project manager - screenshot" width="900" height="715" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Personal project manager</h3>
-                    <p class="project-description">A Flask web app, installable as a PWA. Each project is a living note where every section is a step, and the projects themselves are laid out on a timeline. There is also time tracking with detailed statistics. I use this project personally every day.</p>
+                    <h3 class="project-title">Personal project manager (2026)</h3>
+                    <p class="project-description">A Flask web app, installable as a PWA. Each project is one living document: every heading in the plan becomes a step on the timeline, so it is easy to go from plan to action. It also tracks time per project and turns it into statistics. It runs in Docker on my own server; the demo below is a read-only copy. I have been using it every day for nearly three months.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Flask</span>
@@ -1039,8 +1049,8 @@
                     <img src="minecraft-auth2.png" alt="Minecraft Server Auth plugin - komunikaty logowania w grze" width="560" height="400" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Minecraft Server Auth plugin</h3>
-                    <p class="project-description">Built as part of a team running our school's Minecraft server. The plugin authenticates players with a login and password, and for security, registration sends a verification code to the player's e-mail address and accepts only approved domains.</p>
+                    <h3 class="project-title">Minecraft Server Auth plugin (2024)</h3>
+                    <p class="project-description">Built as part of a team running our school's Minecraft server with several dozen players. The plugin authenticates players with a login and password, and for security, registration sends a verification code to the player's e-mail address and accepts only approved domains. We had to solve problems like: security vulnerabilities, optimisation (many players logging in at the same time) and </p>
                     <div class="project-tags">
                         <span class="tag">Java</span>
                         <span class="tag">Spigot API</span>
@@ -1048,7 +1058,7 @@
                         <span class="tag">SMTP</span>
                         <span class="tag">Git</span>
                         <span class="tag">Team project</span>
-                        <span class="tag">In production</span>
+                        <span class="tag">Used in production</span>
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/alo-mc/mc-authplugin" data-print="github.com/alo-mc/mc-authplugin" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>More on GitHub</a>
@@ -1062,8 +1072,8 @@
                     <img src="container-updater.png" alt="Auto deploy system - logi container-updatera" width="800" height="382" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Auto deploy system</h3>
-                    <p class="project-description">A Python service that watches selected GitHub branches and redeploys my projects whenever a new commit lands. It runs each project's own deploy script and reads its exit code, so a failed build is marked as broken instead of being retried every few minutes. It has no HTTP API and no open port — only its own clock can start a deployment.</p>
+                    <h3 class="project-title">Auto deploy system (2026)</h3>
+                    <p class="project-description">A Python service that watches selected GitHub branches and redeploys my projects whenever a new commit lands. It runs each project's own deploy script and reads its exit code, so a failed build is marked as broken instead of being retried every few minutes. It has no HTTP API and no open port - only its own clock can start a deployment. I run it on my own server and it saves me a lot of time.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Docker</span>

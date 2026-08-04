@@ -28,14 +28,14 @@ LinkedIn pobrane z przypadkowego źródła.
 
 **Znak GitHuba a znak towarowy.** Plik SVG jest udostępniony na CC0, ale samo
 logo pozostaje znakiem towarowym GitHub, Inc. CC0 zrzeka się praw autorskich,
-nie praw do znaku towarowego. Użycie tutaj jest nominatywne — logo oznacza
-odnośnik prowadzący do GitHuba — i mieści się w wytycznych GitHuba dotyczących
+nie praw do znaku towarowego. Użycie tutaj jest nominatywne - logo oznacza
+odnośnik prowadzący do GitHuba - i mieści się w wytycznych GitHuba dotyczących
 używania marki. Nie wolno go używać jako logo tego projektu, w favikonie ani
 w sposób sugerujący, że GitHub jest sponsorem lub autorem strony.
 
 ---
 
-## ISC License — Lucide (wszystkie ikony konturowe)
+## ISC License - Lucide (wszystkie ikony konturowe)
 
 ```
 ISC License
@@ -55,7 +55,7 @@ ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT OF
 OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
 ```
 
-## MIT License — Feather (dotyczy `at-sign` i `external-link`)
+## MIT License - Feather (dotyczy `at-sign` i `external-link`)
 
 Te dwie ikony Lucide wywodzą się z projektu Feather i objęte są dodatkowo
 poniższą licencją.
@@ -84,7 +84,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 ```
 
-## CC0 1.0 — Simple Icons (znak GitHuba)
+## CC0 1.0 - Simple Icons (znak GitHuba)
 
 Simple Icons udostępnia pliki ikon na CC0 1.0 Universal (przekazanie do domeny
 publicznej). CC0 nie wymaga podania autorstwa; wpis tutaj jest informacyjny.
