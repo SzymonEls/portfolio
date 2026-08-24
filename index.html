@@ -776,6 +776,14 @@
                 gap: 1.2mm;
             }
 
+            /* Czwarta karta nie mieści się na kartce - na papierze zostają
+               trzy projekty, resztę czytelnik znajdzie pod adresem GitHuba
+               ze stopki. Klasa siedzi na karcie w HTML, więc gdy kolejność
+               projektów się zmieni, wystarczy ją przenieść. */
+            .project-card.no-print {
+                display: none;
+            }
+
             /* Zrzut obok opisu, nie nad nim - trzy karty jedna pod drugą
                w pionowym układzie nie mieszczą się na jednej stronie. */
             .project-card {
@@ -1000,7 +1008,7 @@
                         I build Python web apps end to end - from the data model to the server they run on. Everything ships in Docker, and a service I wrote redeploys my projects on every commit.
                         <br /><br />
 
-                        I build tools I actually need: the project manager below exists because nothing matched the way I plan my work. I have also worked in a team, on the auth plugin for my school's Minecraft server. These three are my biggest finished projects; the rest are on my GitHub.
+                        I build tools I actually need: the project manager below exists because nothing matched the way I plan my work. I have also worked in teams - on the auth plugin for my school's Minecraft server and on a transit planner for Wrocław. These are my biggest finished projects; the rest are on my GitHub.
                         <!-- TODO: dopisać tu jedno zdanie o tym, czego szukam (staż / praktyki /
                              praca na część etatu) i w jakim kierunku (backend / DevOps). Bez tego
                              czytelnik nie wie, co ci zaproponować. -->
@@ -1143,6 +1151,27 @@
                     </div>
                     <div class="project-links">
                         <a href="https://github.com/SzymonEls/container-updater" data-print="github.com/SzymonEls/container-updater" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>More on GitHub</a>
+                    </div>
+                </div>
+            </article>
+
+            <!-- Karta Projektu 4. no-print: na wydruku ta karta znika,
+                 żeby CV zostało na jednej kartce A4 (patrz @media print). -->
+            <article class="project-card no-print">
+                <div class="project-image">
+                    <img src="metal-planner.png" alt="Metal Planner - mapa przepływów z propozycjami tras" width="900" height="576" loading="lazy" decoding="async">
+                </div>
+                <div class="project-info">
+                    <h3 class="project-title">Metal Planner - public transport search (2026)</h3>
+                    <p class="project-description">A Flask web app that searches tram and bus connections in Wrocław, installable as a PWA. Instead of one computed route it draws every sensible way to get there at once - main corridors bright, niche detours barely visible - with a list of ready proposals beside the map: times, lines and transfers. Timetables come from the city's open GTFS feed; the server rebuilds its SQLite database every night and swaps it atomically. Built in a team.</p>
+                    <div class="project-tags">
+                        <span class="tag">Python</span>
+                        <span class="tag">Flask</span>
+                        <span class="tag">Docker</span>
+                        <span class="tag">Team project</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Metal-Pipe-Org/Metal-Planner" data-print="github.com/Metal-Pipe-Org/Metal-Planner" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>More on GitHub</a>
                     </div>
                 </div>
             </article>
