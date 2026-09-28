@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pl">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Szymon Elsner | CV and Projects</title>
+    <title>Szymon Elsner | CV i projekty</title>
     <link rel="alternate" hreflang="en" href="index.html">
     <link rel="alternate" hreflang="pl" href="pl.html">
     <style>
@@ -601,7 +601,7 @@
                z tych pięciu stopni, żeby CV i projekty czytały się jak jeden
                dokument:
                  18pt   imię i nazwisko
-                 12pt   tytuł sekcji ("My top projects")
+                 12pt   tytuł sekcji ("Moje najważniejsze projekty")
                  10pt   nagłówki paneli i tytuły wpisów/kart
                  8pt    tekst ciągły
                  7.5pt  podpisy, daty, tagi, przyciski
@@ -1022,21 +1022,21 @@
         <div class="nav-right">
             <ul class="nav-links">
                 <li><a href="#cv">CV</a></li>
-                <li><a href="#projekty">Projects</a></li>
-                <li><a href="#kontakt">Contact</a></li>
+                <li><a href="#projekty">Projekty</a></li>
+                <li><a href="#kontakt">Kontakt</a></li>
             </ul>
             <!-- Strona ma dopracowany arkusz @media print, więc wydruk jest tu
                  pełnoprawną funkcją, a nie przypadkiem - stąd jawny przycisk. -->
             <!-- Sama ikona, więc nazwa przycisku musi przyjść z aria-label -
                  bez tego czytnik ekranu przeczyta pusty "button". -->
             <div class="nav-tools">
-                <!-- Druga wersja językowa leży w pl.html. Treść obu plików
+                <!-- Druga wersja językowa leży w index.html. Treść obu plików
                      trzeba zmieniać razem. -->
-                <div class="lang-switch" aria-label="Language">
-                    <span aria-current="page" lang="en">EN</span>
-                    <a href="pl.html" hreflang="pl" lang="pl" title="Polski">PL</a>
+                <div class="lang-switch" aria-label="Język">
+                    <a href="index.html" hreflang="en" lang="en" title="English">EN</a>
+                    <span aria-current="page" lang="pl">PL</span>
                 </div>
-                <button type="button" class="print-btn" onclick="window.print()" aria-label="Print" title="Print">
+                <button type="button" class="print-btn" onclick="window.print()" aria-label="Drukuj" title="Drukuj">
                     <svg class="icon" aria-hidden="true"><use href="#i-print"></use></svg>
                 </button>
             </div>
@@ -1050,7 +1050,7 @@
             <span>SE</span>
         </div>
         <h1>Szymon <span>Elsner</span></h1>
-        <p>Incoming Artificial Intelligence student (from October 2026). In the meantime I'm a tech enthusiast actively developing and running my own tools like a project manager I use every day, or an automatic deploy system that saves me time updating my Docker containers.</p>
+        <p>Od października 2026 student Sztucznej Inteligencji. Poza tym pasjonat technologii - sam tworzę i utrzymuję własne narzędzia, takie jak menedżer projektów, z którego korzystam codziennie, czy system automatycznych wdrożeń na serwer produkcyjny, który oszczędza mi czas przy aktualizacji kontenerów Dockera.</p>
     </header>
 
     <!-- CV Section -->
@@ -1060,12 +1060,12 @@
         <div class="cv-grid">
             <div class="cv-column">
                 <article class="cv-panel">
-                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-user"></use></svg>About me/experience</h3>
+                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-user"></use></svg>O mnie/doświadczenie</h3>
                     <p class="cv-summary">
-                        I build Python web apps end to end - from the data model to the server they run on. Everything ships in Docker, and a service I wrote redeploys my projects on every commit.
+                        Tworzę aplikacje webowe w Pythonie od modelu danych po serwer, na którym działają. Wszystko wdrażam w Dockerze, a napisana przeze mnie usługa wdraża moje projekty ponownie po każdym commicie.
                         <br /><br />
 
-                        I build tools I actually need: the project manager below exists because nothing matched the way I plan my work. I have also worked in teams - on the auth plugin for my school's Minecraft server and on a transit planner for Wrocław. These are my biggest finished projects; the rest are on my GitHub.
+                        Buduję narzędzia, których naprawdę potrzebuję: menedżer projektów opisany niżej powstał, bo nic nie pasowało do sposobu, w jaki planuję pracę. Pracowałem też w zespołach - nad pluginem logowania dla szkolnego serwera Minecraft i nad wyszukiwarką połączeń komunikacji miejskiej we Wrocławiu. To moje największe ukończone projekty; resztę można znaleźć na moim GitHubie.
                         <!-- TODO: dopisać tu jedno zdanie o tym, czego szukam (staż / praktyki /
                              praca na część etatu) i w jakim kierunku (backend / DevOps). Bez tego
                              czytelnik nie wie, co ci zaproponować. -->
@@ -1073,25 +1073,25 @@
                 </article>
 
                 <article class="cv-panel">
-                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-edu"></use></svg>Education</h3>
+                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-edu"></use></svg>Wykształcenie</h3>
                     <div class="cv-item">
                         <div class="cv-item-head">
-                            <h4>Politechnika Wrocławska (Wrocław University of Science and Technology)</h4>
-                            <span class="cv-date">from Oct 2026</span>
+                            <h4>Politechnika Wrocławska</h4>
+                            <span class="cv-date">od paź 2026</span>
                         </div>
-                        <span class="cv-meta">Artificial Intelligence</span>
+                        <span class="cv-meta">Sztuczna Inteligencja</span>
                     </div>
                     <div class="cv-item">
                         <div class="cv-item-head">
                             <h4>Akademickie Liceum Ogólnokształcące Politechniki Wrocławskiej (ALO PWr)</h4>
                             <span class="cv-date">2022 - 2026</span>
                         </div>
-                        <span class="cv-meta">secondary school · graduated (Matura exam)</span>
+                        <span class="cv-meta">liceum ogólnokształcące · ukończone (matura)</span>
                     </div>
                 </article>
 
                 <article class="cv-panel">
-                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-award"></use></svg>Certificates</h3>
+                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-award"></use></svg>Certyfikaty</h3>
                     <ul class="cv-list">
                         <!-- data-print: skrócony adres dopisywany przy druku (patrz @media print) -->
                         <li data-print="freecodecamp.org/certification/szymon_elsner/relational-databases-v9"><a href="https://www.freecodecamp.org/certification/szymon_elsner/relational-databases-v9" target="_blank" rel="noopener noreferrer">Relational Databases</a> <span class="cv-issuer">· freeCodeCamp</span></li>
@@ -1101,10 +1101,10 @@
 
             <aside class="cv-column">
                 <article class="cv-panel">
-                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-at"></use></svg>Contact</h3>
+                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-at"></use></svg>Kontakt</h3>
                     <ul class="contact-list">
                         <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-mail"></use></svg>Email: <a href="mailto:szymon@szymonelsner.pl">szymon@szymonelsner.pl</a></li>
-                        <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-pin"></use></svg>Location: Wrocław, Poland</li>
+                        <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-pin"></use></svg>Lokalizacja: Wrocław</li>
                         <li><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>GitHub: <a href="https://github.com/SzymonEls" target="_blank" rel="noopener noreferrer">github.com/SzymonEls</a></li>
                         <!-- Ukryte do czasu założenia profilu. Zakomentowane, a nie usunięte,
                              żeby wrócić jednym ruchem - ikona "i-work" czeka w sprite.
@@ -1114,15 +1114,15 @@
                 </article>
 
                 <article class="cv-panel">
-                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-skills"></use></svg>Skills</h3>
+                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-skills"></use></svg>Umiejętności</h3>
                     <div class="skills-list">
                         <span class="tag">Git</span>
                         <span class="tag">Python</span>
                         <span class="tag">Flask</span>
                         <span class="tag">Docker</span>
                         <span class="tag">Bash</span>
-                        <span class="tag">Nginx and server management</span>
-                        <span class="tag">UX design</span>
+                        <span class="tag">Nginx i administracja serwerem</span>
+                        <span class="tag">Projektowanie UX</span>
                         <span class="tag">SQL</span>
                         <span class="tag">CI/CD</span>
                         <span class="tag">MS Office</span>
@@ -1132,11 +1132,11 @@
                 </article>
 
                 <article class="cv-panel">
-                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-lang"></use></svg>Languages</h3>
+                    <h3><svg class="icon icon-inline" aria-hidden="true"><use href="#i-lang"></use></svg>Języki</h3>
                     <ul class="cv-list">
-                        <li>Polish - native</li>
-                        <li>English - B2</li>
-                        <li>German - A1</li>
+                        <li>polski - ojczysty</li>
+                        <li>angielski - B2</li>
+                        <li>niemiecki - A1</li>
                     </ul>
                 </article>
             </aside>
@@ -1145,7 +1145,7 @@
 
     <!-- Główna Sekcja z Projektami -->
     <main class="portfolio-container" id="projekty">
-        <h2 class="section-title">My top projects</h2>
+        <h2 class="section-title">Moje najważniejsze projekty</h2>
         
         <div class="projects-grid">
             
@@ -1153,20 +1153,20 @@
             <article class="project-card">
                 <div class="project-image">
                     <!-- Miejsce na grafikę projektu. Jeśli nie dodasz img, wyświetli się tło zastępcze -->
-                    <img src="productivity.png" alt="Personal project manager - screenshot" width="900" height="715" loading="lazy" decoding="async">
+                    <img src="productivity.png" alt="Osobisty menedżer projektów - zrzut ekranu" width="900" height="715" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Personal project manager (2026)</h3>
-                    <p class="project-description">A Flask web app, installable as a PWA. Each project is one living document: every heading in the plan becomes a step on the timeline, so it is easy to go from plan to action. It also tracks time per project and turns it into statistics. It runs in Docker on my own server; the demo below is a read-only copy. I have been using it every day for nearly three months.</p>
+                    <h3 class="project-title">Menedżer projektów (2026)</h3>
+                    <p class="project-description">Aplikacja webowa we Flasku, instalowana jako PWA. Każdy projekt to jeden żywy dokument: każdy nagłówek w planie staje się krokiem na osi czasu, więc łatwo przejść od planu do działania. Aplikacja mierzy też czas poświęcony na każdy projekt i przekłada go na statystyki. Działa w Dockerze na moim własnym serwerze; demo poniżej to kopia tylko do odczytu. Korzystam z niej codziennie od prawie trzech miesięcy.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Flask</span>
                         <span class="tag">HTML/CSS/JS</span>
                         <span class="tag">Docker</span>
-                        <span class="tag">In production</span>
+                        <span class="tag">Na produkcji</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://demo1.sze.one" data-print="demo1.sze.one" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-ext"></use></svg>Live Demo</a>
+                        <a href="https://demo1.sze.one" data-print="demo1.sze.one" class="btn btn-primary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-ext"></use></svg>Demo na żywo</a>
                         <a href="https://github.com/SzymonEls/AI-productivity-app" data-print="github.com/SzymonEls/AI-productivity-app" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>GitHub</a>
                     </div>
                 </div>
@@ -1175,21 +1175,21 @@
             <!-- Karta Projektu 2 -->
             <article class="project-card">
                 <div class="project-image">
-                    <img src="minecraft-auth2.png" alt="Minecraft Server Auth plugin - komunikaty logowania w grze" width="560" height="400" loading="lazy" decoding="async">
+                    <img src="minecraft-auth2.png" alt="Plugin logowania do serwera Minecraft - komunikaty logowania w grze" width="560" height="400" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Minecraft Server Auth plugin (2024)</h3>
-                    <p class="project-description">Built with a team for our school's Minecraft server, which had several dozen players. The plugin authenticated players with a login and password; registration sent a verification code by e-mail and accepted only approved domains, so only people from the school could get in. The hard parts were security - a flaw in the login flow means anyone can take over an account - and handling many players logging in at once.</p>
+                    <h3 class="project-title">Plugin logowania do serwera Minecraft (2024)</h3>
+                    <p class="project-description">Stworzony w zespole dla naszego szkolnego serwera Minecraft, na którym grało kilkadziesiąt osób. Plugin uwierzytelniał graczy loginem i hasłem; przy rejestracji wysyłał kod weryfikacyjny e-mailem i przyjmował tylko zatwierdzone domeny, więc dostęp miały wyłącznie osoby ze szkoły. Najtrudniejsze było bezpieczeństwo - błąd w procesie logowania oznacza, że każdy może przejąć cudze konto - oraz obsługa wielu graczy logujących się jednocześnie.</p>
                     <div class="project-tags">
                         <span class="tag">Java</span>
                         <span class="tag">Spigot API</span>
                         <span class="tag">Maven</span>
                         <span class="tag">Git</span>
-                        <span class="tag">Team project</span>
-                        <span class="tag">Used in production</span>
+                        <span class="tag">Projekt zespołowy</span>
+                        <span class="tag">Używany na produkcji</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/alo-mc/mc-authplugin" data-print="github.com/alo-mc/mc-authplugin" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>More on GitHub</a>
+                        <a href="https://github.com/alo-mc/mc-authplugin" data-print="github.com/alo-mc/mc-authplugin" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>Więcej na GitHubie</a>
                     </div>
                 </div>
             </article>
@@ -1197,20 +1197,20 @@
             <!-- Karta Projektu 3 -->
             <article class="project-card">
                 <div class="project-image">
-                    <img src="container-updater.png" alt="Auto deploy system - logi container-updatera" width="800" height="382" loading="lazy" decoding="async">
+                    <img src="container-updater.png" alt="System automatycznych wdrożeń - logi container-updatera" width="800" height="382" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Auto deploy system (2026)</h3>
-                    <p class="project-description">A Python service that watches selected GitHub branches and redeploys my projects whenever a new commit lands. It runs each project's own deploy script and reads its exit code, so a failed build is marked as broken instead of being retried every few minutes. It has no HTTP API and no open port - only its own clock can start a deployment. It currently keeps a few projects up to date on my server.</p>
+                    <h3 class="project-title">System automatycznych wdrożeń (2026)</h3>
+                    <p class="project-description">Usługa w Pythonie, która obserwuje wybrane gałęzie na GitHubie i wdraża ponownie moje projekty, gdy tylko pojawi się nowy commit. Uruchamia własny skrypt wdrożeniowy każdego projektu i odczytuje jego kod wyjścia, więc nieudany build zostaje oznaczony jako zepsuty, zamiast być ponawiany co kilka minut. Nie ma API HTTP ani otwartego portu - wdrożenie może uruchomić tylko jej własny zegar. Obecnie utrzymuje aktualność kilku projektów na moim serwerze.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Docker</span>
                         <span class="tag">CI/CD</span>
                         <span class="tag">pytest</span>
-                        <span class="tag">In production</span>
+                        <span class="tag">Na produkcji</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/SzymonEls/container-updater" data-print="github.com/SzymonEls/container-updater" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>More on GitHub</a>
+                        <a href="https://github.com/SzymonEls/container-updater" data-print="github.com/SzymonEls/container-updater" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>Więcej na GitHubie</a>
                     </div>
                 </div>
             </article>
@@ -1222,16 +1222,16 @@
                     <img src="metal-planner.png" alt="Metal Planner - mapa przepływów z propozycjami tras" width="900" height="576" loading="lazy" decoding="async">
                 </div>
                 <div class="project-info">
-                    <h3 class="project-title">Metal Planner - public transport search (2026)</h3>
-                    <p class="project-description">A Flask web app that searches tram and bus connections in Wrocław, installable as a PWA. Instead of one computed route it draws every sensible way to get there at once - main corridors bright, niche detours barely visible - with a list of ready proposals beside the map: times, lines and transfers. Timetables come from the city's open GTFS feed; the server rebuilds its SQLite database every night and swaps it atomically. Built in a team.</p>
+                    <h3 class="project-title">Metal Planner - wyszukiwarka połączeń komunikacji miejskiej (2026)</h3>
+                    <p class="project-description">Aplikacja webowa we Flasku do wyszukiwania połączeń tramwajowych i autobusowych we Wrocławiu, instalowana jako PWA. Zamiast jednej wyliczonej trasy rysuje naraz wszystkie sensowne sposoby dojazdu - główne korytarze wyraźnie, niszowe objazdy ledwo widocznie - a obok mapy pokazuje listę gotowych propozycji: godziny, linie i przesiadki. Rozkłady pochodzą z otwartego feedu GTFS miasta; serwer co noc przebudowuje bazę SQLite i podmienia ją atomowo. Tworzony w zespole.</p>
                     <div class="project-tags">
                         <span class="tag">Python</span>
                         <span class="tag">Flask</span>
                         <span class="tag">Docker</span>
-                        <span class="tag">Team project</span>
+                        <span class="tag">Projekt zespołowy</span>
                     </div>
                     <div class="project-links">
-                        <a href="https://github.com/Metal-Pipe-Org/Metal-Planner" data-print="github.com/Metal-Pipe-Org/Metal-Planner" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>More on GitHub</a>
+                        <a href="https://github.com/Metal-Pipe-Org/Metal-Planner" data-print="github.com/Metal-Pipe-Org/Metal-Planner" class="btn btn-secondary" target="_blank" rel="noopener noreferrer"><svg class="icon icon-inline" aria-hidden="true"><use href="#i-github"></use></svg>Więcej na GitHubie</a>
                     </div>
                 </div>
             </article>

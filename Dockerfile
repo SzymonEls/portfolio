@@ -11,7 +11,7 @@ WORKDIR /usr/share/nginx/html
 # Sama strona. LICENSES-icons.md jedzie razem z nia, bo licencje ISC i MIT
 # wymagaja, zeby nota o prawach autorskich towarzyszyla kazdej kopii - a
 # opublikowana strona jest kopia.
-COPY index.html LICENSES-icons.md ./
+COPY index.html pl.html LICENSES-icons.md ./
 
 # Zrzuty ekranu projektow. Wczesniej byly poza kontenerem i zwracaly 404.
 COPY *.png ./
